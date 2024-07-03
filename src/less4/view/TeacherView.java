@@ -12,14 +12,4 @@ public class TeacherView implements UserView<Teacher> {
         Collections.sort(teachers);
         System.out.println(teachers);
     }
-
-    public void editVew (int id, String name, String last)
-    {
-        
-    }
-
-    public void print (List<Teacher> teachers){
-        System.out.println(teachers);
-    }
-
 }

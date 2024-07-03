@@ -12,18 +12,29 @@ public class Lesson4 {
 
     public static void main(String[] args) {
 
-        List<Teacher> teach = Arrays.asList(
-            new Teacher(1, "Sasha", "Ivanov"),
-            new Teacher(2, "Ira", "Ivanova")
-        );
-
-        TeacherController TC = new TeacherController();
-        TC.sendOnConsole(teach);
-        //.sendOnConsole(teach);
-
         new StudentController()
-                        .sendOnConsole(List.of(new Student(1, "Sasha", "Ivanov"),
-                                new Student(2, "Ira", "Ivanova")));
+                .sendOnConsole(List.of(new Student(1, "Sasha", "Ivanov"),
+                        new Student(2, "Ira", "Ivanova")));
+
+//____________________________________________________________________
+
+        List<Teacher> teach = Arrays.asList(
+                new Teacher(1, "SashaT", "IvanovT"),
+                new Teacher(2, "IraT", "IvanovaT"));
+
+        Teacher te = new Teacher(3, "Ivan", "Sidorov");
+
+        TeacherController TC = new TeacherController(teach);
+        
+        TC.showTeachers();
+
+        TC.addTeacher(te);
+
+        TC.showTeachers();
+
+        TC.editTeacher(TC.getTeacher(3), 4, "IvanT", "SidorovT");
+
+        TC.showTeachers();
 
     }
 }

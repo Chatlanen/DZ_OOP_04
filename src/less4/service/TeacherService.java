@@ -2,25 +2,35 @@ package less4.service;
 
 import java.util.List;
 
+import less4.controller.UserController;
 import less4.model.Teacher;
+import less4.model.User;
+import less4.view.TeacherView;
+import less4.view.UserView;
 
 
-public class TeacherService {
+public class TeacherService implements UserController{
 
-    private List<Teacher> teachers;
+    private UserView<Teacher> view = new TeacherView();
 
     public Teacher createTeacher(int id, String name, String last) {
-        Teacher teach =  new Teacher(id, name, last);
-        teachers.add(teach);
-        return teach;
+        return new Teacher(id, name, last);
     }
 
-    public void editTeacher (int id, String name, String last){
-        for (Teacher teacher : teachers) {
-            if (teacher.getId() == id){
-                teacher.setName(name);
-                teacher.setLastName(last);
-            }
-        }
+    @Override
+    public <T extends User> User create(T user) {
+        return user;
+    }
+
+    @Override
+    public <T extends User> User edit(T user, int id, String name, String last) {
+        user.setId(id);
+        user.setName(name);
+        user.setLastName(last);
+        return user;
+    }
+
+    public void sendOnConsole(List<Teacher> teachers) {
+        view.sendOnConsole(teachers);
     }
 }

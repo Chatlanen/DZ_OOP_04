@@ -1,13 +1,35 @@
 package less4.service;
 
-import less4.model.Student;
+import java.util.List;
 
-public class StudentService {
+import less4.controller.UserController;
+import less4.model.Student;
+import less4.model.User;
+import less4.view.StudentView;
+import less4.view.UserView;
+
+public class StudentService implements UserController {
+
+    private UserView<Student> view = new StudentView();
 
     public Student createStudent(int id, String name, String last) {
         return new Student(id, name, last);
     }
 
-    
+    @Override
+    public <T extends User> User create(T user) {
+        return user;
+    }
 
+    @Override
+    public <T extends User> User edit(T user, int id, String name, String last) {
+        user.setId(id);
+        user.setName(name);
+        user.setLastName(last);
+        return user;
+    }
+
+    public void sendOnConsole(List<Student> students) {
+        view.sendOnConsole(students);
+    }
 }
