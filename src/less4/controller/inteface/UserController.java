@@ -1,4 +1,4 @@
-package less4.controller;
+package less4.controller.inteface;
 
 import less4.model.User;
 
